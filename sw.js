@@ -56,6 +56,16 @@ self.addEventListener('fetch', function (event) {
           return response;
         }
         return fetch(event.request).then(function(response) {
+          if (
+              response.status === 403 ||
+              response.status === 503 ||
+              response.url.includes("/cdn-cgi/")
+          ) {
+              console.warn(
+                  "Cloudflare challenge page detected, not caching"
+              );
+              return response;
+          }
           cache.put(event.request, response.clone());
           return response;
         });
