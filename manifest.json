@@ -1,11 +1,11 @@
 {
-    "name": "",
-    "short_name": "",
-    "description": "",
+    "name": "Lab8_Starter",
+    "short_name": "Miaoxin Chen",
+    "description": "a lab app",
     "start_url": "",
-    "display": "",
-    "background_color": "",
-    "theme_color": "",
+    "display": "minimal-ui",
+    "background_color": "blue",
+    "theme_color": "blue",
     "icons": [
       {
         "src": "/assets/images/icons/icon-192x192.png",
