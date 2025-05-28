@@ -46,15 +46,16 @@ self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.open(CACHE_NAME).then(function(cache) {
     // B8. TODO - If the request is in the cache, return with the cached version.
-      if(RECIPE_URLS.includes(event.request.url)) {
-        console.log("Cache hit for", event.request.url);
-        return caches.match(event.request);
-      }
+      return cache.match(event.request).then(function(response) {
     //            Otherwise fetch the resource, add it to the cache, and return
     //            network response.
-      return fetch(event.request).then(function(response) {
-        cache.put(event.request, response.clone());
-        return response;
+        if(response) {
+          return response;
+        }
+        return fetch(event.request).then(function(response) {
+          cache.put(event.request, response.clone());
+          return response;
+        });
       });
     })
   );
