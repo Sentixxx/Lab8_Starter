@@ -18,6 +18,7 @@ self.addEventListener('install', function (event) {
     caches.open(CACHE_NAME).then(function (cache) {
       // B6. TODO - Add all of the URLs from RECIPE_URLs here so that they are
       //            added to the cache when the ServiceWorker is installed
+      cache.add("./manifest.json")
       return cache.addAll(RECIPE_URLS);
     })
   );
