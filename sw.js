@@ -43,6 +43,9 @@ self.addEventListener('fetch', function (event) {
   /*******************************/
   // B7. TODO - Respond to the event by opening the cache using the name we gave
   //            above (CACHE_NAME)
+  if (event.request.method !== "GET") {
+    return;
+  }
   event.respondWith(
     caches.open(CACHE_NAME).then(function(cache) {
     // B8. TODO - If the request is in the cache, return with the cached version.
