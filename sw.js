@@ -67,6 +67,7 @@ self.addEventListener('fetch', function (event) {
               return response;
           }
           cache.put(event.request, response.clone());
+          console.log("Cached: ", response);
           return response;
         });
       });
